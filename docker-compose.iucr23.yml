@@ -21,7 +21,7 @@ services:
     image: "qubox/registry:${QUBOX_DOCKER_TAG:?Must set env var QUBOX_DOCKER_TAG}"
     volumes:
       - ./shared_files:/mnt/shared_files
-      - qubox_registry_data:/mnt/qubox_registry_data
+      - qubox_registry_data:/home/app/
     ports:
       - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_QUBOX_REGISTRY:?Must set env var QUBOX_PORT_QUBOX_REGISTRY}:8000"
     depends_on:
