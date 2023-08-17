@@ -10,7 +10,7 @@ services:
       - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_RABBITMQ:?Must set env var QUBOX_PORT_RABBITMQ}:5672"
       - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_RABBITMQ_MANAGEMENT:?Must set env var QUBOX_PORT_RABBITMQ_MANAGEMENT}:15672"
       - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_WEBSOCKET:?Must set env var QUBOX_PORT_WEBSOCKET}:4000"
-    restart: unless-stopped
+    restart: "unless-stopped"
     healthcheck:
       test: rabbitmq-diagnostics -q is_running
       interval: 10s
@@ -32,6 +32,31 @@ services:
       QUBOX_HOST_RABBITMQ: "qubox-message-bus"
       QUBOX_PORT_RABBITMQ: "5672"
       QUBOX_REGISTRY_SERVER_DB_PATH: "/home/app/qubox_registry_database.db"
+    networks:
+      - qubox-net
+    restart: "unless-stopped"
+
+  xharpy-gpaw:
+    image: "qubox/xharpy-gpaw:${QUBOX_DOCKER_TAG:?Must set env var QUBOX_DOCKER_TAG}"
+    environment:
+      QUBOX_RABBITMQ_QUEUE_NAME: "xharpy-gpaw"
+      QUBOX_APPLICATION_CONFIG_FILE: "configure_xharpy.py"
+    volumes:
+      - ./shared_files:/mnt/shared_files
+    depends_on:
+      - qubox-registry
+    networks:
+      - qubox-net
+    restart: "unless-stopped"
+
+  nosphera2-pyscf:
+    environment:
+      QUBOX_RABBITMQ_QUEUE_NAME: "nosphera2_pyscf"
+      QUBOX_APPLICATION_CONFIG_FILE: "configure_nosphera2-pyscf.py"
+    volumes:
+      - ./shared_files:/mnt/shared_files
+    depends_on:
+      - qubox-registry
     networks:
       - qubox-net
     restart: "unless-stopped"
