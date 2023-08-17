@@ -50,6 +50,7 @@ services:
     restart: "unless-stopped"
 
   nosphera2-pyscf:
+    image: "qubox/nosphera2_pyscf:${QUBOX_DOCKER_TAG:?Must set env var QUBOX_DOCKER_TAG}"
     environment:
       QUBOX_RABBITMQ_QUEUE_NAME: "nosphera2_pyscf"
       QUBOX_APPLICATION_CONFIG_FILE: "configure_nosphera2-pyscf.py"
