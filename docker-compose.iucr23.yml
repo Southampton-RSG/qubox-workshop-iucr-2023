@@ -31,7 +31,7 @@ services:
       QUBOX_RABBITMQ_QUEUE_NAME: "qubox_registry"
       QUBOX_HOST_RABBITMQ: "qubox-message-bus"
       QUBOX_PORT_RABBITMQ: "5672"
-      QUBOX_REGISTRY_SERVER_DB_PATH: "/mnt/qubox_registry_data/qubox_registry_database.db"
+      QUBOX_REGISTRY_SERVER_DB_PATH: "/home/app/qubox_registry_database.db"
     networks:
       - qubox-net
     restart: "unless-stopped"
