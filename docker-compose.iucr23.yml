@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  qubox-message-bus:
+    image: "qubox/message-bus:${QUBOX_DOCKER_TAG:?Must set env var QUBOX_DOCKER_TAG}"
+    networks:
+      - qubox-net
+    hostname: "qubox-message-bus"
+    ports:
+      - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_RABBITMQ:?Must set env var QUBOX_PORT_RABBITMQ}:5672"
+      - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_RABBITMQ_MANAGEMENT:?Must set env var QUBOX_PORT_RABBITMQ_MANAGEMENT}:15672"
+      - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_WEBSOCKET:?Must set env var QUBOX_PORT_WEBSOCKET}:4000"
+    restart: unless-stopped
+    healthcheck:
+      test: rabbitmq-diagnostics -q is_running
+      interval: 10s
+      timeout: 30s
+      retries: 3
+
+  qubox-registry:
+    image: "qubox/registry:${QUBOX_DOCKER_TAG:?Must set env var QUBOX_DOCKER_TAG}"
+    volumes:
+      - ./shared_files:/mnt/shared_files
+      - qubox_registry_data:/mnt/qubox_registry_data
+    ports:
+      - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_QUBOX_REGISTRY:?Must set env var QUBOX_PORT_QUBOX_REGISTRY}:8000"
+    depends_on:
+      qubox-message-bus:
+        condition: service_healthy
+    environment:
+      QUBOX_RABBITMQ_QUEUE_NAME: "qubox_registry"
+      QUBOX_HOST_RABBITMQ: "qubox-message-bus"
+      QUBOX_PORT_RABBITMQ: "5672"
+      QUBOX_REGISTRY_SERVER_DB_PATH: "/mnt/qubox_registry_data/qubox_registry_database.db"
+    networks:
+      - qubox-net
+    restart: "unless-stopped"
+
+networks:
+  qubox-net:
+
+volumes:
+  qubox_registry_data:
