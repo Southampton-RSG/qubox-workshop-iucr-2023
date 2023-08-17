@@ -1,1 +1,1 @@
-# workshop-iucr-2023
+# QuantumBox Workshop at the IUCr Congress 2023
