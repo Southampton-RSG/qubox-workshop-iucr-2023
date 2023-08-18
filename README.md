@@ -4,7 +4,23 @@ This repository contains setup instructions for the QuantumBox workshop at [IUCr
 
 The software tools are provided as Docker containers. Please make sure you have `docker` / `docker compose` installed (see [Prerequisites](#prerequisites) below).
 
-## Quick start
+## Prerequisites
+
+You need to have a recent version of `docker` and `docker compose` installed.
+We recommend installing [Docker Desktop](https://docs.docker.com/desktop/), which comes bundled with `docker compose` and a graphical user interface, among other things.
+Please follow the installation instructions for your operating system:
+[Mac](https://docs.docker.com/desktop/install/mac-install/), [Windows](https://docs.docker.com/desktop/install/windows-install/), [Linux](https://docs.docker.com/desktop/install/linux-install/)
+
+**⚠️ Important note for Windows users:**
+
+> The installation of Docker Desktop depends on WSL (Windows Subsystem for Linux),
+> and also requires certain BIOS features to be enabled. The section
+> [System Requirements](https://docs.docker.com/desktop/install/windows-install/#system-requirements)
+> in the Docker Desktop documentation has all the details, please read and follow
+> these carefully to ensure you don't run into strange issues during the installation.
+
+
+## Starting up the QuantumBox Docker containers
 
 - Clone this repository:
    ```bash
@@ -43,22 +59,6 @@ In addition, navigating to http://localhost:11000/applications/ should show some
 [{"id":1,"name":"NoSpherA2 (pyscf)","version":"0.0.1","description":null,"url":null,"registered_at":"2023-08-16T13:50:48.216001"},
 {"id":2,"name":"XHARPy","version":"git_d0d0f82","description":null,"url":null,"registered_at":"2023-08-16T13:50:49.110199"}]
 ```
-
-## Prerequisites
-
-You need to have a recent version of `docker` and `docker compose` installed.
-We recommend installing [Docker Desktop](https://docs.docker.com/desktop/), which comes bundled with `docker compose` and a graphical user interface, among other things.
-Please follow the installation instructions for your operating system:
-[Mac](https://docs.docker.com/desktop/install/mac-install/), [Windows](https://docs.docker.com/desktop/install/windows-install/), [Linux](https://docs.docker.com/desktop/install/linux-install/)
-
-**⚠️ Important note for Windows users:**
-
-> The installation of Docker Desktop depends on WSL (Windows Subsystem for Linux),
-> and also requires certain BIOS features to be enabled. The section
-> [System Requirements](https://docs.docker.com/desktop/install/windows-install/#system-requirements)
-> in the Docker Desktop documentation has all the details, please read and follow
-> these carefully to ensure you don't run into strange issues during the installation.
-
 
 ## Troubleshooting
 
