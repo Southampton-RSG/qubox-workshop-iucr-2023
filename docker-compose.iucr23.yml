@@ -62,8 +62,43 @@ services:
       - qubox-net
     restart: "unless-stopped"
 
+  crysalis-pro:
+    image: qubox/crysalis-pro:${QUBOX_DOCKER_TAG:?Must set env var QUBOX_DOCKER_TAG}
+    volumes:
+      - ./shared_files:/mnt/shared_files
+      - wine_installations_dir:/opt/wine_installations
+    networks:
+      - qubox-net
+    ports:
+      - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_CRYSALIS_PRO:?Must set env var QUBOX_PORT_CRYSALIS_PRO}:8080"
+    depends_on:
+      - qubox-registry
+    restart: "unless-stopped"
+    environment:
+      QUBOX_APP_DISPLAY_NAME: "CrysAlis Pro"
+      SHARED_FILES_DIR: /mnt/shared_files
+      QUBOX_RABBITMQ_QUEUE_NAME: "crysalis-pro"
+      QUBOX_APPLICATION_CONFIG_FILE: "configure_crysalis_pro.py"
+
+  olex2-linux:
+    image: qubox/olex2-linux:${QUBOX_DOCKER_TAG:?Must set env var QUBOX_DOCKER_TAG}
+    volumes:
+      - ./shared_files:/mnt/shared_files
+    networks:
+      - qubox-net
+    ports:
+      - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_OLEX2_LINUX:?Must set env var QUBOX_PORT_OLEX2_LINUX}:8080"
+    depends_on:
+      - qubox-registry
+    restart: unless-stopped
+    environment:
+      QUBOX_APP_DISPLAY_NAME: "Olex2"
+      QUBOX_APPLICATION_CONFIG_FILE: "configure_olex2.py"
+      SHARED_FILES_DIR: /mnt/shared_files
+
 networks:
   qubox-net:
 
 volumes:
   qubox_registry_data:
+  wine_installations_dir:
