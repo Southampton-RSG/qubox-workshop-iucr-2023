@@ -52,6 +52,8 @@ Please follow the installation instructions for your operating system:
   docker compose -f docker-compose.iucr23.yml --env-file="env.iucr23" --project-name="qubox-iucr23" up -d
   ```
 
+## Verifying the installation
+
 To verify that the installation worked, you can navigate to http://localhost:11000/ where you should see the message `"Hello from QuBox!"`.
 
 In addition, navigating to http://localhost:11000/applications/ should show something like the following:
@@ -59,6 +61,21 @@ In addition, navigating to http://localhost:11000/applications/ should show some
 [{"id":1,"name":"NoSpherA2 (pyscf)","version":"0.0.1","description":null,"url":null,"registered_at":"2023-08-16T13:50:48.216001"},
 {"id":2,"name":"XHARPy","version":"git_d0d0f82","description":null,"url":null,"registered_at":"2023-08-16T13:50:49.110199"}]
 ```
+
+## Tearing down the QuantumBox Docker containers
+
+In order to stop and remove any running containers, execute the following command.
+```
+docker compose -f docker-compose.iucr23.yml --env-file="env.iucr23" --project-name="qubox-iucr23" down
+```
+
+Internally, some QuantumBox docker containers define "volumes", which are a way of persisting data across restarts of the containers.
+If you run into any problems it can sometimes be useful to completely remove any data stored in these volumes.
+To do this, run:
+```
+docker compose -f docker-compose.iucr23.yml --env-file="env.iucr23" --project-name="qubox-iucr23" down --volumes
+```
+
 
 ## Troubleshooting
 
