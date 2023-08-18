@@ -6,9 +6,9 @@ The software tools are provided as Docker containers. Please make sure you have 
 
 ## Quick start
 
-- Clone this repository
+- Clone this repository:
    ```bash
-   git clone git@github.com:Southampton-RSG/qubox-workshop-iucr-2023.git
+   git clone https://github.com/Southampton-RSG/qubox-workshop-iucr-2023.git
    ```
 
   _Alternatively, you can download a zip file with the contents of this repository [here](https://github.com/Southampton-RSG/qubox-workshop-iucr-2023/archive/refs/tags/v1.0.0.zip). Once downloaded, extract this to a location of your choice._
