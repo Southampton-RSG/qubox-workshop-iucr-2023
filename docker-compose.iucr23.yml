@@ -96,6 +96,22 @@ services:
       QUBOX_APPLICATION_CONFIG_FILE: "configure_olex2.py"
       SHARED_FILES_DIR: /mnt/shared_files
 
+  crystal-explorer:
+    image: qubox/crystal-explorer:${QUBOX_DOCKER_TAG:?Must set env var QUBOX_DOCKER_TAG}
+    volumes:
+      - ./shared_files:/mnt/shared_files
+    networks:
+      - qubox-net
+    ports:
+      - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_CRYSTAL_EXPLORER:?Must set env var QUBOX_PORT_CRYSTAL_EXPLORER}:8080"
+    depends_on:
+      - qubox-registry
+    restart: "unless-stopped"
+    environment:
+      QUBOX_APP_DISPLAY_NAME: "CrystalExplorer"
+      QUBOX_APPLICATION_CONFIG_FILE: "configure_crystal_explorer.py"
+      SHARED_FILES_DIR: /mnt/shared_files
+
 networks:
   qubox-net:
 
