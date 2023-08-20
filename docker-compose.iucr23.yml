@@ -32,6 +32,7 @@ services:
       QUBOX_HOST_RABBITMQ: "qubox-message-bus"
       QUBOX_PORT_RABBITMQ: "5672"
       QUBOX_REGISTRY_SERVER_DB_PATH: "/home/app/qubox_registry_database.db"
+      SHARED_FILES_DIR: "/mnt/shared_files"
     networks:
       - qubox-net
     restart: "unless-stopped"
