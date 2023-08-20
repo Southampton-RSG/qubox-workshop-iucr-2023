@@ -27,7 +27,7 @@ Please follow the installation instructions for your operating system:
    git clone https://github.com/Southampton-RSG/qubox-workshop-iucr-2023.git
    ```
 
-  _Alternatively, you can download a zip file with the contents of this repository [here](https://github.com/Southampton-RSG/qubox-workshop-iucr-2023/archive/refs/tags/v1.0.0.zip). Once downloaded, extract this to a location of your choice._
+  _Alternatively, you can download a zip file with the contents of this repository [here](https://github.com/Southampton-RSG/qubox-workshop-iucr-2023/archive/refs/tags/v1.1.0.zip). Once downloaded, extract this to a location of your choice._
 
 
 - Open a terminal / PowerShell and change into the cloned repository (or extracted folder).
@@ -56,11 +56,14 @@ Please follow the installation instructions for your operating system:
 
 To verify that the installation worked, you can navigate to http://localhost:11000/ where you should see the message `"Hello from QuBox!"`.
 
-In addition, navigating to http://localhost:11000/applications/ should show something like the following:
+Navigating to http://localhost:11000/applications/ should show something like the following:
 ```
 [{"id":1,"name":"NoSpherA2 (pyscf)","version":"0.0.1","description":null,"url":null,"registered_at":"2023-08-16T13:50:48.216001"},
 {"id":2,"name":"XHARPy","version":"git_d0d0f82","description":null,"url":null,"registered_at":"2023-08-16T13:50:49.110199"}]
 ```
+
+Finally, navigating to http://localhost:12000/datasets/ should present a web interface with a list of datasets found in `shared_files/datasets/`.
+(You will need to create a subfolder and move at least one .cif or .par file in there in order for the frontend to display anything other than an empty list).
 
 ## Tearing down the QuantumBox Docker containers
 
