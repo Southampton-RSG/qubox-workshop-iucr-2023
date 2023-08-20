@@ -63,7 +63,8 @@ Navigating to http://localhost:11000/applications/ should show something like th
 ```
 
 Finally, navigating to http://localhost:12000/datasets/ should present a web interface with a list of datasets found in `shared_files/datasets/`.
-(You will need to create a subfolder and move at least one .cif or .par file in there in order for the frontend to display anything other than an empty list).
+For convenience, a couple of example CIF files (`Epoxide` and `L-Alanine`) are included in this repository, but feel free to place your own datasets in this folder as well.
+Any subfolder of `shared_files/datasets/` will be interpreted as a separate dataset, and any `.cif` and `.par`/`.xpar` files present in a dataset subfolder will be picked up by the QuBox web interface.
 
 ## Tearing down the QuantumBox Docker containers
 
