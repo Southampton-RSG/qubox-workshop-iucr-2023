@@ -36,6 +36,18 @@ services:
       - qubox-net
     restart: "unless-stopped"
 
+  qubox-frontend:
+    image: qubox/frontend:${QUBOX_DOCKER_TAG:?Must set env var QUBOX_DOCKER_TAG}
+    ports:
+      - "${QUBOX_BIND_ADDRESS}:${QUBOX_PORT_QUBOX_FRONTEND:?Must set env var QUBOX_PORT_QUBOX_FRONTEND}:12000"
+    networks:
+      - qubox-net
+    restart: "unless-stopped"
+    environment:
+        # Fixes bug where websocket connection is fixed to default port 3000.
+        # See: https://github.com/facebook/create-react-app/issues/11779#issuecomment-1199085393
+        - WDS_SOCKET_PORT=0
+
   xharpy-gpaw:
     image: "qubox/xharpy-gpaw:${QUBOX_DOCKER_TAG:?Must set env var QUBOX_DOCKER_TAG}"
     environment:
