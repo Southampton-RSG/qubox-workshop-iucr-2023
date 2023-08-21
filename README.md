@@ -27,7 +27,7 @@ Please follow the installation instructions for your operating system:
    git clone https://github.com/Southampton-RSG/qubox-workshop-iucr-2023.git
    ```
 
-  _Alternatively, you can download a zip file with the contents of this repository [here](https://github.com/Southampton-RSG/qubox-workshop-iucr-2023/archive/refs/tags/v1.2.0.zip). Once downloaded, extract this to a location of your choice._
+  _Alternatively, you can download a zip file with the contents of this repository [here](https://github.com/Southampton-RSG/qubox-workshop-iucr-2023/archive/refs/tags/v1.3.0.zip). Once downloaded, extract this to a location of your choice._
 
 
 - Open a terminal / PowerShell and change into the cloned repository (or extracted folder).
